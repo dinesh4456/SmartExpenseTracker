@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.expensetracker.dto.expense.ExpenseFilterResponse;
 import com.expensetracker.dto.expense.ExpenseResponse;
+import com.expensetracker.entity.Category;
 import com.expensetracker.entity.Expense;
 import com.expensetracker.entity.User;
 import com.expensetracker.exception.ResourceNotFoundException;
+import com.expensetracker.repository.CategoryRepository;
 import com.expensetracker.repository.ExpenseRepository;
 import com.expensetracker.repository.UserRepository;
 import com.expensetracker.security.SecurityUtils;
@@ -24,13 +26,16 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseRepository expenseRepository;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
 
     public ExpenseServiceImpl(
             ExpenseRepository expenseRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository,
+            CategoryRepository categoryRepository) {
 
         this.expenseRepository = expenseRepository;
         this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -43,6 +48,12 @@ public class ExpenseServiceImpl implements ExpenseService {
                         new ResourceNotFoundException("User not found"));
 
         expense.setUser(user);
+
+        if (expense.getCategory() != null && expense.getCategory().getId() != null) {
+            Category category = categoryRepository.findById(expense.getCategory().getId())
+                    .orElse(null);
+            expense.setCategory(category);
+        }
 
         return expenseRepository.save(expense);
     }
@@ -150,7 +161,14 @@ public class ExpenseServiceImpl implements ExpenseService {
         existing.setAmount(expense.getAmount());
         existing.setDescription(expense.getDescription());
         existing.setExpenseDate(expense.getExpenseDate());
-        existing.setCategory(expense.getCategory());
+
+        if (expense.getCategory() != null && expense.getCategory().getId() != null) {
+            Category category = categoryRepository.findById(expense.getCategory().getId())
+                    .orElse(null);
+            existing.setCategory(category);
+        } else {
+            existing.setCategory(expense.getCategory());
+        }
 
         return expenseRepository.save(existing);
     }

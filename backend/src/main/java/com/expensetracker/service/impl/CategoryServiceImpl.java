@@ -71,6 +71,8 @@ public class CategoryServiceImpl implements CategoryService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
+        seedDefaultCategoriesIfEmpty(user);
+
         return categoryRepository.findByUserOrderByNameAsc(user);
     }
 
@@ -85,6 +87,8 @@ public class CategoryServiceImpl implements CategoryService {
         String email = SecurityUtils.getCurrentUserEmail();
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        seedDefaultCategoriesIfEmpty(user);
 
         List<Category> categories;
         if (search != null && !search.trim().isEmpty()) {
@@ -246,6 +250,28 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         categoryRepository.delete(category);
+    }
+
+    private void seedDefaultCategoriesIfEmpty(User user) {
+        if (categoryRepository.findByUser(user).isEmpty()) {
+            String[][] defaults = {
+                {"Food & Dining", "Groceries, restaurants, snacks", "EXPENSE"},
+                {"Transportation", "Fuel, public transit, cab, maintenance", "EXPENSE"},
+                {"Utilities & Bills", "Electricity, water, internet, mobile", "EXPENSE"},
+                {"Shopping", "Clothing, electronics, household", "EXPENSE"},
+                {"Entertainment", "Movies, games, subscriptions", "EXPENSE"},
+                {"Health & Medical", "Doctor, pharmacy, insurance", "EXPENSE"},
+                {"Other", "Miscellaneous expenses", "EXPENSE"}
+            };
+            for (String[] def : defaults) {
+                Category cat = new Category();
+                cat.setName(def[0]);
+                cat.setDescription(def[1]);
+                cat.setType(def[2]);
+                cat.setUser(user);
+                categoryRepository.save(cat);
+            }
+        }
     }
 
     private void validateCategoryName(String name) {

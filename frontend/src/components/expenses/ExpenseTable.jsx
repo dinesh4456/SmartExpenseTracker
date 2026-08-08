@@ -19,6 +19,20 @@ function ExpenseTable({
         ? expenses
         : [];
 
+    const getCategoryName = (expense) => {
+        if (!expense) return "-";
+        if (typeof expense.category === "object" && expense.category !== null) {
+            return expense.category.name || "-";
+        }
+        if (typeof expense.category === "string" && expense.category.trim() !== "") {
+            return expense.category;
+        }
+        if (expense.categoryName) {
+            return expense.categoryName;
+        }
+        return "-";
+    };
+
     return (
 
         <div className="expense-table-card">
@@ -86,7 +100,7 @@ function ExpenseTable({
 
                                     <span className="expense-badge">
 
-                                        {expense.category?.name || "-"}
+                                        {getCategoryName(expense)}
 
                                     </span>
 
@@ -100,7 +114,7 @@ function ExpenseTable({
 
                                 <td className="text-danger fw-bold">
 
-                                    ₹{expense.amount}
+                                    ₹{Number(expense.amount || 0).toLocaleString()}
 
                                 </td>
 
@@ -108,7 +122,8 @@ function ExpenseTable({
 
                                     <button
                                         className="table-btn edit"
-                                        onClick={() => onEdit(expense)}
+                                        onClick={() => onEdit(expense.id ? expense.id : expense)}
+                                        title="Edit"
                                     >
 
                                         <FaEdit />
@@ -118,6 +133,7 @@ function ExpenseTable({
                                     <button
                                         className="table-btn delete"
                                         onClick={() => onDelete(expense.id)}
+                                        title="Delete"
                                     >
 
                                         <FaTrash />

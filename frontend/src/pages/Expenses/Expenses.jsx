@@ -46,10 +46,16 @@ function Expenses() {
 
         if (category) {
             data = data.filter(expense => {
-                if (expense.category?.name) {
-                    return expense.category.name.toLowerCase() === category.toLowerCase();
+                if (expense.category && typeof expense.category === "object") {
+                    return expense.category.name?.toLowerCase() === category.toLowerCase();
                 }
-                return typeof expense.category === "string" && expense.category.toLowerCase() === category.toLowerCase();
+                if (typeof expense.category === "string") {
+                    return expense.category.toLowerCase() === category.toLowerCase();
+                }
+                if (expense.categoryName) {
+                    return expense.categoryName.toLowerCase() === category.toLowerCase();
+                }
+                return false;
             });
         }
 
@@ -111,8 +117,9 @@ function Expenses() {
         setShowModal(true);
     };
 
-    const handleEdit = async (id) => {
+    const handleEdit = async (itemOrId) => {
         try {
+            const id = typeof itemOrId === "object" && itemOrId !== null ? itemOrId.id : itemOrId;
             const expense = await getExpenseById(id);
             setEditExpense(expense);
             setShowModal(true);

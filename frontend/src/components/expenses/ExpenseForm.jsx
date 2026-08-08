@@ -43,6 +43,18 @@ function ExpenseForm({
 
         if (editExpense) {
 
+            let catId = "";
+            if (editExpense.category && typeof editExpense.category === "object") {
+                catId = editExpense.category.id || "";
+            } else if (typeof editExpense.category === "string" && categories.length > 0) {
+                const matched = categories.find(
+                    c => c.name.toLowerCase() === editExpense.category.toLowerCase()
+                );
+                if (matched) catId = matched.id;
+            } else if (editExpense.categoryId) {
+                catId = editExpense.categoryId;
+            }
+
             setForm({
 
                 title: editExpense.title || "",
@@ -53,7 +65,7 @@ function ExpenseForm({
 
                 expenseDate: editExpense.expenseDate || "",
 
-                categoryId: editExpense.category?.id || ""
+                categoryId: catId
 
             });
 
@@ -65,7 +77,7 @@ function ExpenseForm({
 
         }
 
-    }, [editExpense]);
+    }, [editExpense, categories]);
 
     const loadCategories = async () => {
 
