@@ -1,0 +1,53 @@
+.expense-toolbar{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:24px;
+
+}
+
+.toolbar-search,
+
+.toolbar-filter,
+
+.toolbar-date{
+
+    flex:1;
+
+    min-width:220px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:white;
+
+    padding:14px 18px;
+
+    border-radius:16px;
+
+    box-shadow:0 12px 30px rgba(15,23,42,.06);
+
+}
+
+.toolbar-search input,
+
+.toolbar-filter select,
+
+.toolbar-date input{
+
+    width:100%;
+
+    border:none!important;
+
+    outline:none;
+
+    background:transparent;
+
+}

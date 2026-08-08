@@ -1,0 +1,17 @@
+.table-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    margin-right: 8px;
+}
+
+.edit {
+    background: #DBEAFE;
+    color: #2563EB;
+}
+
+.delete {
+    background: #FEE2E2;
+    color: #DC2626;
+}

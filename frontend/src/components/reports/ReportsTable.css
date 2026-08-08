@@ -1,0 +1,133 @@
+.reports-table-card {
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+
+}
+
+.reports-table-card table {
+
+    width: 100%;
+
+    margin: 0;
+
+}
+
+.reports-table-card thead th {
+
+    border: none;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    padding: 18px 22px;
+
+}
+
+.reports-table-card tbody td {
+
+    padding: 18px 22px;
+
+    border-top: 1px solid #EEF2F7;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+
+}
+
+.reports-table-card tbody tr {
+
+    transition: 0.2s;
+
+}
+
+.reports-table-card tbody tr:hover {
+
+    background: #F8FAFC;
+
+}
+
+.report-month {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+}
+
+.report-income {
+
+    color: #16A34A !important;
+
+    font-weight: 700;
+
+}
+
+.report-expense {
+
+    color: #DC2626 !important;
+
+    font-weight: 700;
+
+}
+
+.report-savings {
+
+    color: #2563EB !important;
+
+    font-weight: 700;
+
+}
+
+.report-savings.negative {
+
+    color: #DC2626 !important;
+
+}
+
+.reports-empty {
+
+    text-align: center;
+
+    padding: 50px 20px !important;
+
+    color: #9CA3AF !important;
+
+    font-size: 14px !important;
+
+}
+
+@media (max-width: 600px) {
+
+    .reports-table-card {
+
+        overflow-x: auto;
+
+    }
+
+    .reports-table-card table {
+
+        min-width: 700px;
+
+    }
+
+}

@@ -1,0 +1,297 @@
+/* =========================================
+   REPORTS PAGE
+========================================= */
+
+.reports-page {
+    width: 100%;
+}
+
+
+/* =========================================
+   HEADER BAR
+========================================= */
+
+.reports-header {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    padding: 30px;
+
+    margin-bottom: 28px;
+
+    box-shadow: 0 15px 45px rgba(15, 23, 42, 0.06);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.reports-title-section {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+}
+
+.reports-title-section h2 {
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   RIGHT SIDE CONTROLS
+========================================= */
+
+.reports-controls {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    flex-wrap: nowrap;
+
+}
+
+
+.reports-filter-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    padding: 6px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    height: 44px;
+}
+
+.reports-filter-pill .reports-month-select {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    min-width: 110px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+}
+
+.reports-filter-pill:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.reports-month-select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+
+/* =========================================
+   COMMON BUTTON
+========================================= */
+
+.report-action-btn {
+
+    height: 40px;
+
+    padding: 0 16px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+.report-action-btn:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================
+   SEND BUTTON
+========================================= */
+
+.send-btn {
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+}
+
+.send-btn:hover {
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.25);
+
+}
+
+
+/* =========================================
+   EXCEL BUTTON
+========================================= */
+
+.excel-btn {
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+}
+
+.excel-btn:hover {
+
+    box-shadow:
+        0 5px 15px rgba(22, 163, 74, 0.25);
+
+}
+
+
+/* =========================================
+   PDF BUTTON
+========================================= */
+
+.pdf-btn {
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+}
+
+.pdf-btn:hover {
+
+    box-shadow:
+        0 5px 15px rgba(220, 38, 38, 0.25);
+
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.reports-page .reports-table-card {
+
+    margin-top: 0;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .reports-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+    .reports-controls {
+
+        width: 100%;
+
+        justify-content: flex-start;
+
+        flex-wrap: wrap;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .reports-header {
+
+        padding: 18px;
+
+    }
+
+    .reports-title-section h2 {
+
+        font-size: 20px;
+
+    }
+
+    .reports-controls {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        width: 100%;
+
+    }
+
+    .reports-month-select {
+
+        width: 100%;
+
+        grid-column: span 2;
+
+    }
+
+    .report-action-btn {
+
+        width: 100%;
+
+    }
+
+}

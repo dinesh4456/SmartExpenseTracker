@@ -1,0 +1,79 @@
+.budget-form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.budget-group{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.budget-group label{
+
+font-weight:600;
+
+margin-bottom:8px;
+
+color:#1E293B;
+
+}
+
+.budget-group .form-control{
+
+height:52px;
+
+border-radius:14px;
+
+border:1px solid #CBD5E1;
+
+padding:0 16px;
+
+transition:.25s;
+
+}
+
+.budget-group .form-control:focus{
+
+border-color:#2563EB;
+
+box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+.save-budget-btn{
+
+margin-top:10px;
+
+height:52px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#2563EB,#1D4ED8);
+
+color:#fff;
+
+font-weight:700;
+
+font-size:16px;
+
+transition:.25s;
+
+}
+
+.save-budget-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 12px 30px rgba(37,99,235,.35);
+
+}

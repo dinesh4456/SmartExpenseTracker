@@ -1,0 +1,94 @@
+.recent-card{
+
+    border:none;
+
+    border-radius:24px;
+
+    background:#ffffff;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+.transaction-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    transition:.25s;
+
+    margin-bottom:12px;
+
+}
+
+.transaction-item:hover{
+
+    background:#f8fafc;
+
+    transform:translateY(-3px);
+
+}
+
+.transaction-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+}
+
+.recent-filter-select {
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    cursor: pointer;
+    padding: 6px 12px;
+    width: auto;
+}
+
+.recent-filter-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.custom-days-input {
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.transaction-amount{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#dc2626;
+
+}

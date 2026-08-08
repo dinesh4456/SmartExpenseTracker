@@ -1,0 +1,140 @@
+:root{
+
+    --primary:#2563EB;
+    --secondary:#4F46E5;
+
+    --success:#10B981;
+    --danger:#EF4444;
+    --warning:#F59E0B;
+
+    --background:#F4F7FB;
+
+    --card:#FFFFFFCC;
+
+    --border:#E5E7EB;
+
+    --text:#111827;
+
+    --muted:#6B7280;
+
+    --radius:22px;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:Inter,system-ui,sans-serif;
+
+    background:
+
+        radial-gradient(circle at top right,#DBEAFE 0%,transparent 35%),
+
+        radial-gradient(circle at bottom left,#EDE9FE 0%,transparent 35%),
+
+        var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+}
+
+#root{
+
+    min-height:100vh;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+button{
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.card{
+
+    border:none!important;
+
+    border-radius:22px!important;
+
+    background:rgba(255,255,255,.72)!important;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+
+        0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.table{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+input,
+
+select,
+
+textarea{
+
+    border-radius:14px!important;
+
+    border:1px solid var(--border)!important;
+
+    padding:12px!important;
+
+}
+
+.btn-primary{
+
+    background:linear-gradient(
+
+        135deg,
+
+        #2563EB,
+
+        #4F46E5
+
+    )!important;
+
+    border:none!important;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
+
+}

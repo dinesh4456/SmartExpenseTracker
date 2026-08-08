@@ -1,0 +1,95 @@
+.expense-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    margin-bottom:28px;
+
+    box-shadow:0 15px 45px rgba(15,23,42,.06);
+
+}
+
+.expense-header h2{
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+.expense-header p{
+
+    margin-top:8px;
+
+    color:#6B7280;
+
+}
+
+.add-expense-btn{
+
+    border:none;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #2563EB,
+
+        #4F46E5
+
+    );
+
+    color:white;
+
+    padding:14px 28px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.add-expense-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.35);
+
+}
+
+@media(max-width:768px){
+
+    .expense-header{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        align-items:flex-start;
+
+    }
+
+}
