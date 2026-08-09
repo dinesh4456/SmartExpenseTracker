@@ -29,7 +29,7 @@ public class User extends BaseEntity {
     @Column(length = 20)
     private String phoneNumber;
 
-    @Column(length = 255)
+    @Column(columnDefinition = "LONGTEXT")
     private String profileImage;
 
     @Column(name = "reset_otp", length = 10)

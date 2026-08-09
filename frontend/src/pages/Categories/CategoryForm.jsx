@@ -74,7 +74,7 @@ function CategoryForm({ onSuccess, onCancel, editCategory }) {
                 <input
                     type="text"
                     className="form-control form-control-lg"
-                    placeholder="e.g. Food, Travel, Shopping"
+                    placeholder="e.g. Education, Travel, Shopping"
                     value={name}
                     onChange={(e) => {
                         setName(e.target.value);

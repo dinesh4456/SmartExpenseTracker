@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `budgets` (
 -- Sample Default Global Categories (user_id is NULL for system default)
 -- ---------------------------------------------------------
 INSERT IGNORE INTO `categories` (`id`, `name`, `type`, `description`, `user_id`) VALUES
-(1, 'Food & Dining', 'EXPENSE', 'Groceries, restaurants, and food delivery', NULL),
+(1, 'Education', 'EXPENSE', 'Tuition fees, books, courses, and learning materials', NULL),
 (2, 'Transportation', 'EXPENSE', 'Fuel, cab, public transit, and vehicle maintenance', NULL),
 (3, 'Housing & Rent', 'EXPENSE', 'Rent, mortgage, and home maintenance', NULL),
 (4, 'Utilities', 'EXPENSE', 'Electricity, water, gas, internet, and mobile recharges', NULL),

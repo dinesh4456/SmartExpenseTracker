@@ -253,9 +253,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     private void seedDefaultCategoriesIfEmpty(User user) {
-        if (categoryRepository.findByUser(user).isEmpty()) {
+        List<Category> existing = categoryRepository.findByUser(user);
+        if (existing.isEmpty()) {
             String[][] defaults = {
-                {"Food & Dining", "Groceries, restaurants, snacks", "EXPENSE"},
+                {"Education", "Tuition fees, books, courses, learning materials", "EXPENSE"},
                 {"Transportation", "Fuel, public transit, cab, maintenance", "EXPENSE"},
                 {"Utilities & Bills", "Electricity, water, internet, mobile", "EXPENSE"},
                 {"Shopping", "Clothing, electronics, household", "EXPENSE"},
@@ -270,6 +271,18 @@ public class CategoryServiceImpl implements CategoryService {
                 cat.setType(def[2]);
                 cat.setUser(user);
                 categoryRepository.save(cat);
+            }
+        } else {
+            // Automatically migrate existing "Food & Dining" / "Food" to "Education" if present
+            for (Category cat : existing) {
+                if ("Food & Dining".equalsIgnoreCase(cat.getName()) || "Food".equalsIgnoreCase(cat.getName())) {
+                    boolean hasEducation = existing.stream().anyMatch(c -> "Education".equalsIgnoreCase(c.getName()));
+                    if (!hasEducation) {
+                        cat.setName("Education");
+                        cat.setDescription("Tuition fees, books, courses, learning materials");
+                        categoryRepository.save(cat);
+                    }
+                }
             }
         }
     }

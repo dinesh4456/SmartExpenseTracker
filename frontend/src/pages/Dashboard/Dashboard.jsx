@@ -86,7 +86,6 @@ function Dashboard() {
 
                 <div
                     className="container mt-5"
-                    style={{ zoom: "0.9" }}
                 >
 
                     <div className="alert alert-danger">
@@ -114,13 +113,9 @@ function Dashboard() {
     }
 
     return (
-
         <MainLayout>
-
-            <div style={{ zoom: "0.9" }}>
-
+            <div className="dashboard-page-container">
                 {/* Hero */}
-
                 <DashboardHero
                     dashboard={dashboard}
                 />

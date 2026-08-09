@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
+import { updateProfile, getProfileImageUrl } from "../../services/profileService";
+import { FaImage } from "react-icons/fa";
 
-import { updateProfile } from "../../services/profileService";
-
-function ProfileForm({ profile, onSuccess }) {
-
+function ProfileForm({ profile, onSuccess, onOpenGallery }) {
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -16,9 +15,7 @@ function ProfileForm({ profile, onSuccess }) {
     const [submitting, setSubmitting] = useState(false);
 
     useEffect(() => {
-
         if (profile) {
-
             setFormData({
                 fullName: profile.fullName || "",
                 email: profile.email || "",
@@ -26,23 +23,18 @@ function ProfileForm({ profile, onSuccess }) {
                 password: "",
                 profileImage: profile.profileImage || ""
             });
-
         }
-
     }, [profile]);
 
     const handleChange = (e) => {
-
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
         setError("");
-
     };
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
         setError("");
 
@@ -64,7 +56,6 @@ function ProfileForm({ profile, onSuccess }) {
         setSubmitting(true);
 
         try {
-
             const updatedData = await updateProfile(formData);
 
             if (updatedData.token) {
@@ -76,29 +67,19 @@ function ProfileForm({ profile, onSuccess }) {
             }
 
             alert("Profile Updated Successfully");
-
             onSuccess();
-
         } catch (err) {
-
             console.error(err);
-
             const message = err.response?.data?.message || err.message || "Failed to update profile";
             setError(message);
             alert(message);
-
         } finally {
-
             setSubmitting(false);
-
         }
-
     };
 
     return (
-
         <form onSubmit={handleSubmit}>
-
             {error && (
                 <div className="alert alert-danger py-2">
                     {error}
@@ -106,13 +87,9 @@ function ProfileForm({ profile, onSuccess }) {
             )}
 
             <div className="mb-3">
-
                 <label className="form-label fw-semibold">
-
                     Full Name <span className="text-danger">*</span>
-
                 </label>
-
                 <input
                     type="text"
                     name="fullName"
@@ -122,17 +99,12 @@ function ProfileForm({ profile, onSuccess }) {
                     onChange={handleChange}
                     required
                 />
-
             </div>
 
             <div className="mb-3">
-
                 <label className="form-label fw-semibold">
-
                     Email Address <span className="text-danger">*</span>
-
                 </label>
-
                 <input
                     type="email"
                     name="email"
@@ -142,17 +114,12 @@ function ProfileForm({ profile, onSuccess }) {
                     onChange={handleChange}
                     required
                 />
-
             </div>
 
             <div className="mb-3">
-
                 <label className="form-label fw-semibold">
-
                     Phone Number
-
                 </label>
-
                 <input
                     type="tel"
                     name="phoneNumber"
@@ -161,17 +128,12 @@ function ProfileForm({ profile, onSuccess }) {
                     value={formData.phoneNumber}
                     onChange={handleChange}
                 />
-
             </div>
 
             <div className="mb-3">
-
                 <label className="form-label fw-semibold">
-
                     New Password
-
                 </label>
-
                 <input
                     type="password"
                     name="password"
@@ -183,26 +145,31 @@ function ProfileForm({ profile, onSuccess }) {
                 <small className="text-muted">
                     Min 6 characters. Leave empty to retain existing password.
                 </small>
-
             </div>
 
-            <div className="mb-3">
-
-                <label className="form-label fw-semibold">
-
-                    Profile Image URL
-
-                </label>
-
+            <div className="mb-4">
+                <div className="d-flex justify-content-between align-items-center mb-1">
+                    <label className="form-label fw-semibold mb-0">
+                        Profile Image (URL or Pick from Gallery)
+                    </label>
+                    {onOpenGallery && (
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1 py-1 px-2"
+                            onClick={onOpenGallery}
+                        >
+                            <FaImage size={13} /> Pick from Gallery
+                        </button>
+                    )}
+                </div>
                 <input
                     type="text"
                     name="profileImage"
                     className="form-control"
-                    placeholder="https://example.com/avatar.jpg"
+                    placeholder="https://example.com/avatar.jpg or select from gallery above"
                     value={formData.profileImage}
                     onChange={handleChange}
                 />
-
             </div>
 
             <button
@@ -210,15 +177,10 @@ function ProfileForm({ profile, onSuccess }) {
                 className="btn btn-primary w-100 py-2 fw-semibold"
                 disabled={submitting}
             >
-
-                {submitting ? "Updating..." : "Update Profile"}
-
+                {submitting ? "Updating Profile..." : "Update Profile"}
             </button>
-
         </form>
-
     );
-
 }
 
 export default ProfileForm;

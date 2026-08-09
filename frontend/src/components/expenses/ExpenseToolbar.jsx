@@ -65,7 +65,7 @@ function ExpenseToolbar({
                     ))}
                     {categories.length === 0 && (
                         <>
-                            <option value="Food">Food</option>
+                            <option value="Education">Education</option>
                             <option value="Travel">Travel</option>
                             <option value="Bills">Bills</option>
                             <option value="Shopping">Shopping</option>
