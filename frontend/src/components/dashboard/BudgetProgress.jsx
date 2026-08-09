@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getBudgetDetails } from "../../services/budgetService";
 import "./BudgetProgress.css";
 
-function BudgetProgress() {
+function BudgetProgress({ month, year }) {
 
     const [budgetData, setBudgetData] = useState({
         monthlyBudget: 0,
@@ -16,13 +16,16 @@ function BudgetProgress() {
 
     useEffect(() => {
         loadData();
-    }, []);
+    }, [month, year]);
 
     const loadData = async () => {
         try {
-            const data = await getBudgetDetails();
-            if (data) {
+            const data = await getBudgetDetails(month, year);
+            if (data && !Array.isArray(data)) {
                 setBudgetData(data);
+            } else if (Array.isArray(data) && data.length > 0) {
+                const summary = await getBudgetDetails(data[0].month, data[0].year);
+                if (summary) setBudgetData(summary);
             }
         } catch (err) {
             console.error("Failed to load budget progress", err);

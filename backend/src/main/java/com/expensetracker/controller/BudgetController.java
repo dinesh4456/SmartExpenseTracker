@@ -32,14 +32,14 @@ public class BudgetController {
      * GET /api/budget or GET /api/budgets
      */
     @GetMapping
-    public Object getBudgets(
+    public BudgetDetailsResponse getBudgets(
             @RequestParam(required = false) String month,
             @RequestParam(required = false) Integer year) {
 
         if (month != null || year != null) {
             return budgetService.getBudgetByMonthAndYear(month, year);
         }
-        return budgetService.getAllBudgets();
+        return budgetService.getCurrentMonthBudget();
     }
 
     @GetMapping("/summary")

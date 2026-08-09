@@ -64,18 +64,33 @@ public class BudgetServiceImpl implements BudgetService {
 
         int queryYear = (year != null && year > 0) ? year : LocalDate.now().getYear();
 
-        Budget budget = budgetRepository
-                .findByUserAndMonthIgnoreCaseAndYear(user, normalizedMonth, queryYear)
+        List<Budget> userBudgets = budgetRepository.findByUser(user);
+        Budget budget = userBudgets.stream()
+                .filter(b -> b.getYear() != null && b.getYear().equals(queryYear) &&
+                        b.getMonth() != null &&
+                        (b.getMonth().trim().equalsIgnoreCase(normalizedMonth) ||
+                         parseMonthNumber(b.getMonth()) == monthNum))
+                .findFirst()
                 .orElse(null);
 
-        List<Expense> expenses = expenseRepository.getExpensesByMonth(user, queryYear, monthNum);
+        List<Expense> expenses = expenseRepository.findByUser(user).stream()
+                .filter(e -> e.getExpenseDate() != null &&
+                        e.getExpenseDate().getYear() == queryYear &&
+                        e.getExpenseDate().getMonthValue() == monthNum)
+                .toList();
+
         double spent = expenses.stream()
                 .map(Expense::getAmount)
                 .filter(a -> a != null)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .doubleValue();
 
-        List<Income> incomes = incomeRepository.getIncomeByMonth(user, queryYear, monthNum);
+        List<Income> incomes = incomeRepository.findByUser(user).stream()
+                .filter(i -> i.getIncomeDate() != null &&
+                        i.getIncomeDate().getYear() == queryYear &&
+                        i.getIncomeDate().getMonthValue() == monthNum)
+                .toList();
+
         double totalIncome = incomes.stream()
                 .map(Income::getAmount)
                 .filter(a -> a != null)

@@ -25,25 +25,38 @@ function Budget() {
     const [selectedBudget, setSelectedBudget] = useState(null);
 
     const [search, setSearch] = useState("");
+    const [month, setMonth] = useState("");
+    const [year, setYear] = useState("");
 
     useEffect(() => {
         loadBudgets();
     }, []);
 
     useEffect(() => {
-        if (!search) {
-            setFilteredBudgets(budgets);
-            return;
-        }
+        let list = [...budgets];
 
-        const keyword = search.toLowerCase();
-        setFilteredBudgets(
-            budgets.filter(budget =>
+        if (search) {
+            const keyword = search.toLowerCase();
+            list = list.filter(budget =>
                 budget.month?.toLowerCase().includes(keyword) ||
                 budget.year?.toString().includes(keyword)
-            )
-        );
-    }, [search, budgets]);
+            );
+        }
+
+        if (month) {
+            list = list.filter(budget =>
+                budget.month?.toLowerCase() === month.toLowerCase()
+            );
+        }
+
+        if (year) {
+            list = list.filter(budget =>
+                budget.year?.toString() === year.toString()
+            );
+        }
+
+        setFilteredBudgets(list);
+    }, [search, month, year, budgets]);
 
     const loadBudgets = async () => {
         try {
@@ -59,6 +72,10 @@ function Budget() {
             setLoading(false);
         }
     };
+
+    const availableYears = Array.from(
+        new Set(budgets.map(b => b.year).filter(Boolean))
+    );
 
     const handleAddBudget = () => {
         setSelectedBudget(null);
@@ -112,13 +129,21 @@ function Budget() {
 
                 {/* Live Monthly Budget Progress Card */}
                 <div className="mb-4">
-                    <BudgetProgress />
+                    <BudgetProgress
+                        month={month || undefined}
+                        year={year ? Number(year) : undefined}
+                    />
                 </div>
 
                 {/* Search / Filter Toolbar */}
                 <BudgetToolbar
                     search={search}
                     setSearch={setSearch}
+                    month={month}
+                    setMonth={setMonth}
+                    year={year}
+                    setYear={setYear}
+                    availableYears={availableYears}
                 />
 
                 {/* Budget Table with Edit & Delete */}
