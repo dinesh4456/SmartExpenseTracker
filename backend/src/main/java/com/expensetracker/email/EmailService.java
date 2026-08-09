@@ -10,4 +10,6 @@ public interface EmailService {
 
     void sendMonthlyExpenseReportToUser(User user, int year, int month);
 
+    void sendPasswordResetOtpEmail(String toEmail, String userName, String otp);
+
 }

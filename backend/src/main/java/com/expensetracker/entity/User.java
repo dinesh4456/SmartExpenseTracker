@@ -31,4 +31,10 @@ public class User extends BaseEntity {
 
     @Column(length = 255)
     private String profileImage;
-}   
+
+    @Column(name = "reset_otp", length = 10)
+    private String resetOtp;
+
+    @Column(name = "reset_otp_expiry")
+    private java.time.LocalDateTime resetOtpExpiry;
+}

@@ -12,7 +12,10 @@ OpenAPI JSON: `http://localhost:8080/v3/api-docs`
 |---|---|---|---|
 | `POST` | `/api/auth/register` | Register a new user | No |
 | `POST` | `/api/auth/login` | Authenticate user and return JWT | No |
-| `POST` | `/api/auth/forgot-password` | Send password reset instructions | No |
+| `POST` | `/api/auth/send-otp` | Generate & send 6-digit OTP code to registered email | No |
+| `POST` | `/api/auth/verify-otp` | Verify 6-digit OTP code for email | No |
+| `POST` | `/api/auth/reset-password` | Update password after verifying OTP code | No |
+| `POST` | `/api/auth/forgot-password` | (Legacy) Direct password reset | No |
 
 ---
 

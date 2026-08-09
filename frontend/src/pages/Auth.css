@@ -144,3 +144,126 @@
     color: #1D4ED8;
     text-decoration: underline;
 }
+
+/* Step Wizard Indicator */
+.auth-steps-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.auth-step-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #94A3B8;
+    background: #F1F5F9;
+    transition: all 0.3s ease;
+}
+
+.auth-step-pill.active {
+    background: #EEF2FF;
+    color: #4F46E5;
+    border: 1px solid #C7D2FE;
+}
+
+.auth-step-pill.completed {
+    background: #ECFDF5;
+    color: #059669;
+}
+
+.auth-step-number {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #CBD5E1;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.auth-step-pill.active .auth-step-number {
+    background: #4F46E5;
+}
+
+.auth-step-pill.completed .auth-step-number {
+    background: #10B981;
+}
+
+.auth-otp-input {
+    letter-spacing: 8px;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    padding-left: 16px !important;
+}
+
+.auth-input-toggle {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #94A3B8;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.auth-input-toggle:hover {
+    color: #4F46E5;
+}
+
+.auth-resend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #64748B;
+}
+
+.auth-resend-btn {
+    background: none;
+    border: none;
+    color: #2563EB;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0;
+}
+
+.auth-resend-btn:disabled {
+    color: #94A3B8;
+    cursor: not-allowed;
+}
+
+.auth-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #64748B;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 16px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.auth-back-btn:hover {
+    color: #0F172A;
+}
