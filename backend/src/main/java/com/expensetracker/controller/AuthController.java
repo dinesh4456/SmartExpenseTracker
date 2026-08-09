@@ -16,7 +16,7 @@ import com.expensetracker.service.auth.AuthenticationService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping({"/api/auth", "/auth"})
 public class AuthController {
 
     private final AuthenticationService authenticationService;
