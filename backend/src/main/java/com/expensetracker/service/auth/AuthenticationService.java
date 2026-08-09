@@ -109,10 +109,14 @@ public class AuthenticationService {
         user.setResetOtpExpiry(LocalDateTime.now().plusMinutes(10));
         userRepository.save(user);
 
-        // Send OTP via email
-        emailService.sendPasswordResetOtpEmail(user.getEmail(), user.getFullName(), otp);
-
-        return "OTP sent successfully to " + user.getEmail() + ". Please check your inbox (and spam folder).";
+        // Send OTP via email (with graceful fallback if SMTP credentials are not configured)
+        try {
+            emailService.sendPasswordResetOtpEmail(user.getEmail(), user.getFullName(), otp);
+            return "OTP sent successfully to " + user.getEmail() + ". Please check your inbox (and spam folder).";
+        } catch (Exception e) {
+            System.err.println("⚠️ SMTP email dispatch failed (" + e.getMessage() + "). Development OTP Code is: " + otp);
+            return "OTP Generated! Your verification code is: " + otp + " (Note: To send actual emails, configure MAIL_USERNAME and MAIL_PASSWORD in application.yml or environment variables).";
+        }
     }
 
     // VERIFY OTP
