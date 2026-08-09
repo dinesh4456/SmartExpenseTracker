@@ -11,5 +11,5 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080 10000
-ENV JAVA_OPTS="-Xmx320m -Xms128m -Xss512k -XX:+UseContainerSupport -Djava.security.egd=file:/dev/./urandom"
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dserver.port=${PORT:-8080} -jar app.jar"]
+ENV JAVA_OPTS="-Xmx384m -Xms128m -XX:+UseContainerSupport -Djava.security.egd=file:/dev/./urandom"
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dserver.address=0.0.0.0 -Dserver.port=${PORT:-8080} -jar app.jar"]
